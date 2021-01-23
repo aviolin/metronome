@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/metronome/static/css/main.1a7226f6.chunk.css",
-    "main.js": "/metronome/static/js/main.268e4994.chunk.js",
-    "main.js.map": "/metronome/static/js/main.268e4994.chunk.js.map",
+    "main.js": "/metronome/static/js/main.e20f6ef5.chunk.js",
+    "main.js.map": "/metronome/static/js/main.e20f6ef5.chunk.js.map",
     "runtime-main.js": "/metronome/static/js/runtime-main.bace3598.js",
     "runtime-main.js.map": "/metronome/static/js/runtime-main.bace3598.js.map",
     "static/js/2.ae222b37.chunk.js": "/metronome/static/js/2.ae222b37.chunk.js",
     "static/js/2.ae222b37.chunk.js.map": "/metronome/static/js/2.ae222b37.chunk.js.map",
-    "c737dd0979893d18313b.worker.js": "/metronome/c737dd0979893d18313b.worker.js",
-    "c737dd0979893d18313b.worker.js.map": "/metronome/c737dd0979893d18313b.worker.js.map",
+    "70cb1035e7398c59599d.worker.js": "/metronome/70cb1035e7398c59599d.worker.js",
+    "70cb1035e7398c59599d.worker.js.map": "/metronome/70cb1035e7398c59599d.worker.js.map",
     "index.html": "/metronome/index.html",
     "static/css/main.1a7226f6.chunk.css.map": "/metronome/static/css/main.1a7226f6.chunk.css.map",
     "static/js/2.ae222b37.chunk.js.LICENSE.txt": "/metronome/static/js/2.ae222b37.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.bace3598.js",
     "static/js/2.ae222b37.chunk.js",
     "static/css/main.1a7226f6.chunk.css",
-    "static/js/main.268e4994.chunk.js"
+    "static/js/main.e20f6ef5.chunk.js"
   ]
 }
