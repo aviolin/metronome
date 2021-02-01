@@ -1,8 +1,9 @@
 var timerID=null;
-var interval=100;
+var interval=25;
 
+/* eslint-disable-next-line no-restricted-globals */
 self.onmessage=function(e){
-	if (e.data=="start") {
+	if (e.data==="start") {
 		console.log("starting");
 		timerID=setInterval(function(){postMessage("tick");},interval)
 	}
@@ -15,7 +16,7 @@ self.onmessage=function(e){
 			timerID=setInterval(function(){postMessage("tick");},interval)
 		}
 	}
-	else if (e.data=="stop") {
+	else if (e.data==="stop") {
 		console.log("stopping");
 		clearInterval(timerID);
 		timerID=null;
