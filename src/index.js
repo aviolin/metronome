@@ -2,14 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Metronome from './Metronome';
 import Spinner from './Spinner';
-import './App.css';
+import 'normalize.css';
+import './styles/main.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-
-function SettingsButton(props) {
-  let classes = "button-theme-toggle hamburger";
+import { faCheck, faMusic, faCog } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+/* function SettingsButton(props) {
+  let classes = "btn-settings hamburger";
   if (props.isMenuOpen) {
-    classes = "button-theme-toggle hamburger open";
+    classes = "btn-settings hamburger open";
   }
 
   return (
@@ -17,9 +18,10 @@ function SettingsButton(props) {
         <span></span>
         <span></span>
         <span></span>
+        <FontAwesomeIcon icon={faCog} />
       </button>
   );
-}
+} */
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -30,15 +32,18 @@ class Navbar extends React.Component {
     return (
       <div className="navbar">
         <div className="logo">
-          Zen Metronome
+          <FontAwesomeIcon icon={faMusic} />&nbsp;&nbsp;&nbsp;Metronome
         </div>
-          <SettingsButton onClick={this.props.onClick} isMenuOpen={this.props.isMenuOpen} />
+        <div>
+          <a href="https://github.com/aviolin/metronome/" target="_blank"><FontAwesomeIcon icon={faGithub} /></a>
+        </div>
+          {/* <SettingsButton onClick={this.props.onClick} isMenuOpen={this.props.isMenuOpen} /> */}
       </div>
     );
   }
 }
 
-class MobileMenu extends React.Component {
+/* class MobileMenu extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -78,7 +83,7 @@ class MobileMenu extends React.Component {
       </div>
     );
   }
-}
+} */
 
 class App extends React.Component {
   constructor(props) {
@@ -106,7 +111,7 @@ class App extends React.Component {
   }
 
   handleClick(e) {
-    let nextBeats, nextClicks = 0;
+    /* let nextBeats, nextClicks = 0;
       switch (e.target.name) {
         case "menu-toggle":
           this.setState(state => ({isMenuOpen: !state.isMenuOpen }));
@@ -137,15 +142,12 @@ class App extends React.Component {
 
     
     this.updateColors(e.target.value);
-    this.fadeAnimation(e.target.id);
+    this.fadeAnimation(e.target.id); */
 
   }
 
   updateColors(colorString) {
-    let colors = colorString.split("|");
-
-
-
+/*     let colors = colorString.split("|");
     let root = document.documentElement;
     root.style.setProperty('--accentcolor', colors[0]);
     root.style.setProperty('--accentcolorhighlight', colors[1]);
@@ -153,14 +155,14 @@ class App extends React.Component {
     this.setState(state => ({
       color: colors[0],
       colorHighlight: colors[1],
-    }));
+    })); */
   }
 
   render() {
     return(
-      <div>
+      <div className="app">
         <Navbar onClick={this.handleClick} isMenuOpen={this.state.isMenuOpen}/>
-        <MobileMenu isMenuOpen={this.state.isMenuOpen} onClick={this.handleClick} color={this.state.color} beatsPerBar={this.state.beatsPerBar} clicksPerBeat={this.state.clicksPerBeat} />
+        {/* <MobileMenu isMenuOpen={this.state.isMenuOpen} onClick={this.handleClick} color={this.state.color} beatsPerBar={this.state.beatsPerBar} clicksPerBeat={this.state.clicksPerBeat} /> */}
         <Metronome color={this.state.color} colorHighlight={this.state.colorHighlight} beatsPerBar={this.state.beatsPerBar} clicksPerBeat={this.state.clicksPerBeat} />
       </div>  
     ); 

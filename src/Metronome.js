@@ -18,8 +18,8 @@ function PlayButton(props) {
   const playElement = <FontAwesomeIcon icon={faPlay} />;
   const stopElement = <FontAwesomeIcon icon={faStop} />;
   return (
-    <div className="play-container">
-      <button className="button-play" onClick={props.onClick} name="play-button">
+    <div className="play-row">
+      <button className="btn-circle large" onClick={props.onClick} name="play-button">
         {props.value === "Start" ? playElement : stopElement}
       </button>
     </div>
@@ -54,6 +54,9 @@ export default class Metronome extends React.Component {
         isPlaying: false,
         audioUnlocked: false,
         noteQueue: [],      
+
+        beatsPerBar: 4,
+        clicksPerBeat: 1,
       };
       
       this.handleChange = this.handleChange.bind(this);
@@ -115,19 +118,19 @@ export default class Metronome extends React.Component {
         }
         this.scheduleNote(nextNote);
   
-        if (this.props.clicksPerBeat > 1) {
+        if (this.state.clicksPerBeat > 1) {
           nextClick++;
-          if (nextClick >= this.props.clicksPerBeat) {
+          if (nextClick >= this.state.clicksPerBeat) {
             nextClick = 0;
             nextBeat++;
-            if (nextBeat >= this.props.beatsPerBar) {
+            if (nextBeat >= /* this.props. */this.state.beatsPerBar) {
               nextBeat = 0;
             }
           }
         } else {
           nextBeat++;
           nextClick = 0;
-          if (nextBeat >= this.props.beatsPerBar) {
+          if (nextBeat >= /* this.props. */this.state.beatsPerBar) {
             nextBeat = 0;
           }
         }
@@ -136,7 +139,7 @@ export default class Metronome extends React.Component {
           const queue = state.noteQueue.concat(nextNote);
           return {
             noteQueue: queue,
-            nextClickTime: state.nextClickTime + 1/props.clicksPerBeat * secondsPerBeat,
+            nextClickTime: state.nextClickTime + 1/this.state.clicksPerBeat * secondsPerBeat,
             nextBeatTime: nextBeatTime,
             nextBeat: nextBeat,
             nextClick: nextClick
@@ -210,30 +213,72 @@ export default class Metronome extends React.Component {
     }
     
     handleChange(e) {
+      if (e.target.name === "beat-select") {
+        this.setState({beatsPerBar: e.target.value});
+        return;
+      }
+      if (e.target.name === "click-select") {
+        this.setState({clicksPerBeat: e.target.value});
+        return;
+      }
+
       this.fadeAnimation("tempo-label");
       this.setState({tempo: e.target.value});
     }
   
     render() {
       return (
-        <div className="metronome">
+        <>
+          <TempoInputs 
+            onChange={this.handleChange} 
+            onClick={this.handleClick} 
+            tempo={this.state.tempo} 
+            maxTempo={this.state.maxTempo} 
+            minTempo={this.state.minTempo} />
           <Animation 
-              tempo={this.state.tempo} 
-              color={this.props.color} 
-              nbt={this.state.nextBeatTime} 
-              isplaying={this.state.isPlaying} 
-              queue={this.state.noteQueue} 
-              audiocontext={this.audioContext} />
-          <div className="inputs">
-            <PlayButton value={this.state.isPlaying ? "Stop" : "Start"} onClick={this.handleClick} />
-            <TempoInputs 
-              onChange={this.handleChange} 
-              onClick={this.handleClick} 
-              tempo={this.state.tempo} 
-              maxTempo={this.state.maxTempo} 
-              minTempo={this.state.minTempo} />
+            tempo={this.state.tempo} 
+            color={this.props.color} 
+            nbt={this.state.nextBeatTime} 
+            isplaying={this.state.isPlaying} 
+            queue={this.state.noteQueue} 
+            audiocontext={this.audioContext} 
+            beatsPerBar={this.state.beatsPerBar} />
+          <PlayButton value={this.state.isPlaying ? "Stop" : "Start"} onClick={this.handleClick} />
+          <div className="settings-row">
+
+            <div className="select-wrapper">
+              <select 
+                value={this.state.beatsPerBar} 
+                onChange={this.handleChange}
+                name="beat-select"
+              >
+                <option value="1">1/4</option>
+                <option value="2">2/4</option>
+                <option value="3">3/4</option>
+                <option value="4">4/4</option>
+                <option value="5">5/4</option>
+                <option value="5">6/4</option>
+                <option value="7">7/4</option>
+              </select>
+            </div>
+
+            <div className="select-wrapper">
+              <select 
+                value={this.state.clicksPerBeat} 
+                onChange={this.handleChange}
+                name="click-select"
+              >
+                <option value="1">1 click</option>
+                <option value="2">2 clicks</option>
+                <option value="3">3 clicks</option>
+                <option value="4">4 clicks</option>
+                <option value="4">5 clicks</option>
+                <option value="4">6 clicks</option>
+                <option value="4">7 clicks</option>
+              </select>
+            </div>
           </div>
-        </div>
+        </>
       );
     }
   }

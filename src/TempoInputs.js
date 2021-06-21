@@ -3,14 +3,16 @@ import Button from './Button';
   
 function Slider(props) {
   return (
-    <input 
-      type="range" 
-      id="tempo" 
-      min={props.minTempo} 
-      max={props.maxTempo} 
-      step="1"
-      value={props.tempo}
-      onChange={props.onChange}/>
+    <div className="slider-row">
+      <input 
+        type="range" 
+        id="tempo" 
+        min={props.minTempo} 
+        max={props.maxTempo} 
+        step="1"
+        value={props.tempo}
+        onChange={props.onChange}/>
+    </div>
   )
 }
 
@@ -21,16 +23,16 @@ export default class TempoInputs extends React.Component {
   
     render() {
       return (
-        <div className="input-row">
+        <>
           <div className="tempo-input-row">
             <Button increment={false} id="tempo" onClick={this.props.onClick} />
             <div className="tempo-label">
-              <span className="large" id="tempo-label">{this.props.tempo}</span>
+              <span id="tempo-label">{this.props.tempo}</span><span className="bpm-label">&nbsp;bpm</span>
             </div>
             <Button increment={true} id="tempo" onClick={this.props.onClick} />
           </div>
           <Slider onChange={this.props.onChange} tempo={this.props.tempo} maxTempo={this.props.maxTempo} minTempo={this.props.minTempo}/>
-        </div>
+        </>
       )
     }
   }

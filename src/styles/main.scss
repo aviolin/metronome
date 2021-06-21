@@ -1,0 +1,263 @@
+$col-background: #424242;
+$col-light: #595959;
+$col-dark: #393939;
+$col-text: #fff;
+$col-text-hover: #ccc;
+$grad-led: linear-gradient(to bottom, #ff8787 0%, #f00 100%);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: $col-text;
+  background-color: $col-background;
+  padding: 2rem;
+}
+
+a {
+  color: $col-text;
+  transition: .3s;
+
+  &:visited {
+    color: $col-text;
+  }
+
+  &:hover {
+    color: $col-text-hover;
+  }
+}
+
+.mobile-menu {
+  display: none;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  cursor: pointer;
+
+  &.btn-settings {
+    background-color: transparent;
+    border: 0;
+    color: $col-text;
+  }
+
+  &.btn-circle {
+    background-color: $col-background;
+    color: $col-text;
+    border: 0;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    box-shadow: -3px -3px 5px $col-light, 3px 3px 5px $col-dark;
+    width: 3rem;
+    height: 3rem;
+    transition: .2s;
+
+    &.large {
+      height: 6rem;
+      width: 6rem;
+      font-size: 2rem;
+    }
+
+    &:hover {
+      box-shadow: -1px -1px 3px $col-light, 1px 1px 3px $col-dark;
+    }
+  }
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 4rem);
+  max-width: 600px;
+  margin: auto;
+}
+
+.tempo-input-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 0 1rem 0;
+
+  .tempo-label {
+    span:first-child {
+      font-size: 4rem;
+    }
+  }
+}
+
+.play-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.visualizer {
+  flex: 1;
+  height: 100%;
+  display: grid;
+  place-content: center;
+
+  canvas {
+    width: 100%;
+  }
+}
+
+.settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.select-wrapper {
+  position: relative;
+
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    cursor: pointer;
+    transition: .2s;
+  
+    background-color: $col-background;
+    color: $col-text;
+    border: 0;
+    border-radius: .5rem;
+    box-shadow: -3px -3px 5px $col-light, 3px 3px 5px $col-dark;
+    width: 7rem;
+    padding: 1rem;
+
+    &:hover {
+      box-shadow: -1px -1px 3px $col-light, 1px 1px 3px $col-dark;
+    }
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+
+    border-top: 5px solid $col-text;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+  }
+}
+
+/* Range Slider */
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+  margin: 1rem 0 2rem 0;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  cursor: pointer;
+  background: transparent; 
+  border-color: transparent;
+  color: transparent;
+  background-color: $col-background;
+  box-shadow: -3px -3px 5px $col-light inset, 3px 3px 5px $col-dark inset;
+  border-radius: 5px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 1rem;  
+  cursor: pointer;
+  background-color: $col-background;
+  box-shadow: -3px -3px 5px $col-light inset, 3px 3px 5px $col-dark inset;
+  border-radius: 5px;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 1rem;
+  cursor: pointer;
+  background-color: $col-background;
+  box-shadow: -3px -3px 5px $col-light inset, 3px 3px 5px $col-dark inset;
+  border-radius: 5px;;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 1rem;
+  cursor: pointer;
+  border-color: transparent;
+  border-width: 0 0;
+  background-color: $col-background;
+  box-shadow: -3px -3px 5px $col-light inset, 3px 3px 5px $col-dark inset;
+  border-radius: 5px;
+}
+input[type=range]::-ms-fill-lower {
+  background: $col-background;
+  border: 0px solid #010101;
+  border-radius: 0;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: white;
+}
+input[type=range]::-ms-fill-upper {
+  background: $col-background;
+  border: 0px solid #010101;
+  border-radius: 0px;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: white;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  width: 3rem;
+  height: 1.5rem;
+  border-radius: 1rem;
+  background: $col-text;
+  cursor: pointer;
+  margin-top: -3px; 
+  box-shadow: -3px -3px 5px $col-light, 3px 3px 5px $col-dark;
+}
+
+input[type=range]::-moz-range-thumb {
+  border: 0px solid #000000;
+  width: 3rem;
+  height: 1.5rem;
+  border-radius: 1rem;
+  background: $col-text;
+  margin-top: -3px; 
+  box-shadow: -3px -3px 5px $col-light, 3px 3px 5px $col-dark;
+}
+
+input[type=range]::-ms-thumb {
+  border: 0px solid #000000;
+  width: 3rem;
+  height: 1.5rem;
+  border-radius: 1rem;
+  background: $col-text;
+  margin-top: -3px; 
+  box-shadow: -3px -3px 5px $col-light, 3px 3px 5px $col-dark;
+  cursor: pointer;
+}
+
+/* End Range Slider */

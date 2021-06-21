@@ -8,11 +8,19 @@ export default class Button extends React.Component {
     render() {
         if (this.props.increment === true) {
             return(
-                <button name={"increment-" + this.props.id} onClick={this.props.onClick}>+</button>
+                <button 
+                    name={"increment-" + this.props.id} 
+                    onClick={this.props.onClick} 
+                    className="btn-circle"
+                >+</button>
             )
         } else {
             return(
-                <button name={"decrement-" + this.props.id} onClick={this.props.onClick}>–</button>
+                <button 
+                    name={"decrement-" + this.props.id} 
+                    onClick={this.props.onClick}  
+                    className="btn-circle"
+                >–</button>
             )
         }
     }
