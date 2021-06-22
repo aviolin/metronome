@@ -1,7 +1,7 @@
 # Metronome
 ![Metronome app screenshot](https://i.ibb.co/sHJMGpW/metronome-screenshot-desktop.png)
-A metronome made using ReactJS and the AudioContext API. 
 
+A metronome made using ReactJS and the AudioContext API. 
 View the app live at: https://aviolin.github.io/metronome
 
 # Features
