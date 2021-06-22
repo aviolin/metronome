@@ -1,4 +1,5 @@
 # Metronome
+![Metronome app screenshot](https://i.ibb.co/sHJMGpW/metronome-screenshot-desktop.png)
 A metronome made using ReactJS and the AudioContext API. 
 
 View the app live at: https://aviolin.github.io/metronome
@@ -11,8 +12,8 @@ View the app live at: https://aviolin.github.io/metronome
 
 # Installation
 To install the app locally, first download this repository, then:
-1. Navigate to the project folder in your console, and enter Markup : `npm install`
-2. To run the project, enter Markup : `npm start`
+1. Navigate to the project folder in your console, and enter: `npm install`
+2. To run the project, enter: `npm start`
 
 # Motivation
 This project was created to better understand React and how to implement an accurate timer system. The core functionality was inspired by this project: https://github.com/cwilso/metronome
