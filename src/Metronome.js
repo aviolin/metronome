@@ -237,12 +237,13 @@ export default class Metronome extends React.Component {
             minTempo={this.state.minTempo} />
           <Animation 
             tempo={this.state.tempo} 
-            color={this.props.color} 
             nbt={this.state.nextBeatTime} 
             isplaying={this.state.isPlaying} 
             queue={this.state.noteQueue} 
             audiocontext={this.audioContext} 
-            beatsPerBar={this.state.beatsPerBar} />
+            beatsPerBar={this.state.beatsPerBar} 
+            theme={this.props.theme}
+            />
           <PlayButton value={this.state.isPlaying ? "Stop" : "Start"} onClick={this.handleClick} />
           <div className="settings-row">
 
@@ -252,7 +253,6 @@ export default class Metronome extends React.Component {
                 onChange={this.handleChange}
                 name="beat-select"
               >
-                <option value="1">1/4</option>
                 <option value="2">2/4</option>
                 <option value="3">3/4</option>
                 <option value="4">4/4</option>

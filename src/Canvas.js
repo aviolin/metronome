@@ -32,16 +32,15 @@ export default class Canvas extends React.Component {
   drawCanvas() {
     const canvas = this.canvasRef.current;
     const ctx = canvas.getContext("2d");
-    let backgroundColor = "#424242";
 
-    ctx.fillStyle = backgroundColor;
+    ctx.fillStyle = this.props.theme.background;
     ctx.globalAlpha = 1;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    let circleRadius = canvas.width / this.props.beatsPerBar / 5;
+    let circleRadius = Math.min(canvas.width / this.props.beatsPerBar / 5, 36);
 
     for (let i = 0; i < this.props.beatsPerBar; i++) {
-      ctx.fillStyle= "#696969";
+      ctx.fillStyle= this.props.theme.light;
       ctx.globalAlpha = 1;
       ctx.shadowBlur = 0;
 
@@ -54,9 +53,13 @@ export default class Canvas extends React.Component {
       if (this.curNote?.beat === i) {
         /* let percentage = this.props.percentage;
         1-percentage > .9 ? ctx.globalAlpha = 1-percentage*9 : ctx.globalAlpha = 0;*/
-        ctx.fillStyle="red";
-        ctx.shadowColor='red';
-        ctx.shadowBlur= 20;
+        if (this.props.isplaying) {
+          ctx.fillStyle="red";
+          ctx.shadowColor='red';
+          ctx.shadowBlur= circleRadius;
+        } else {
+          this.curNote = null;
+        }
       }
 
       ctx.beginPath();

@@ -52,7 +52,7 @@ export default class Animation extends React.Component {
       this.setState((state, props) => ({
         curNote: currentNote
       }));
-    } 
+    }
     this.rAF = requestAnimationFrame(this.updateAnimation);
   }
   
@@ -63,11 +63,11 @@ export default class Animation extends React.Component {
   render () {
     return (
       <Canvas 
-        color={this.props.color} 
         percentage={this.state.percentage} 
         isplaying={this.props.isplaying} 
         beatsPerBar={this.props.beatsPerBar}
         curNote={this.state.curNote}
+        theme={this.props.theme}
       />
     )
   }

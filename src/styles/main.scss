@@ -1,9 +1,40 @@
-$col-background: #424242;
-$col-light: #595959;
-$col-dark: #393939;
-$col-text: #fff;
-$col-text-hover: #ccc;
-$grad-led: linear-gradient(to bottom, #ff8787 0%, #f00 100%);
+$themes: (
+  light: (
+    col-background: #f0f0f0,
+    col-light: #fff,
+    col-dark: #ccc,
+    col-text: #333,
+    col-text-hover: #666,
+    col-led: red
+  ),
+  dark: (
+    col-background: #424242,
+    col-light: #595959,
+    col-dark: #393939,
+    col-text: #fff,
+    col-text-hover: #ccc,
+    col-led: red
+  )
+);
+
+// SASS theming technique from this article: https://medium.com/@dmitriy.borodiy/easy-color-theming-with-scss-bc38fd5734d1
+@mixin themify($themes: $themes) {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
 
 * {
   box-sizing: border-box;
@@ -11,62 +42,82 @@ $grad-led: linear-gradient(to bottom, #ff8787 0%, #f00 100%);
 
 body {
   font-family: 'Roboto', sans-serif;
-  color: $col-text;
-  background-color: $col-background;
-  padding: 2rem;
+}
+
+.app-wrapper {
+  padding: 1rem;
+  transition: .2s;
+
+  @include themify($themes) {
+    background-color: themed('col-background');
+    color: themed('col-text');
+  }
 }
 
 a {
-  color: $col-text;
   transition: .3s;
+  text-decoration: none;
+
+  @include themify($themes) {
+    color: themed('col-text');
+  }
 
   &:visited {
-    color: $col-text;
+    @include themify($themes) {
+      color: themed('col-text');
+    }
   }
 
   &:hover {
-    color: $col-text-hover;
+    @include themify($themes) {
+      color: themed('col-text-hover');
+    }
   }
-}
-
-.mobile-menu {
-  display: none;
 }
 
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 button {
   cursor: pointer;
+  border: 0;
+  padding: .5rem;
+  transition: .2s;
 
-  &.btn-settings {
-    background-color: transparent;
-    border: 0;
-    color: $col-text;
+  @include themify($themes) {
+    background-color: themed('col-background');
+    box-shadow: -3px -3px 5px themed('col-light'), 3px 3px 5px themed('col-dark');
+    color: themed('col-text');
   }
 
   &.btn-circle {
-    background-color: $col-background;
-    color: $col-text;
-    border: 0;
     border-radius: 50%;
     display: grid;
     place-content: center;
-    box-shadow: -3px -3px 5px $col-light, 3px 3px 5px $col-dark;
     width: 3rem;
     height: 3rem;
-    transition: .2s;
+    min-width: 3rem;
 
+    /* @include themify($themes) {
+      background-color: themed('col-background');
+      box-shadow: -3px -3px 5px themed('col-light'), 3px 3px 5px themed('col-dark');
+      color: themed('col-text');
+    }
+ */
     &.large {
       height: 6rem;
       width: 6rem;
       font-size: 2rem;
     }
+  }
 
-    &:hover {
-      box-shadow: -1px -1px 3px $col-light, 1px 1px 3px $col-dark;
+  &:hover {
+    @include themify($themes) {
+      background-color: themed('col-background');
+      box-shadow: -1px -1px 3px themed('col-light'), 1px 1px 3px themed('col-dark');
     }
   }
 }
@@ -76,7 +127,7 @@ button {
   flex-direction: column;
   justify-content: space-between;
   min-height: calc(100vh - 4rem);
-  max-width: 600px;
+  max-width: 768px;
   margin: auto;
 }
 
@@ -103,8 +154,8 @@ button {
 .visualizer {
   flex: 1;
   height: 100%;
-  display: grid;
-  place-content: center;
+  display: flex;
+  align-items: center;
 
   canvas {
     width: 100%;
@@ -119,6 +170,13 @@ button {
 
 .select-wrapper {
   position: relative;
+  flex: 1;
+  min-width: 5.5rem;
+
+  &:nth-child(2) {
+    padding-left: 2rem;
+    min-width: 7.5rem;
+  }
 
   select {
     -webkit-appearance: none;
@@ -128,16 +186,22 @@ button {
     cursor: pointer;
     transition: .2s;
   
-    background-color: $col-background;
-    color: $col-text;
     border: 0;
     border-radius: .5rem;
-    box-shadow: -3px -3px 5px $col-light, 3px 3px 5px $col-dark;
-    width: 7rem;
     padding: 1rem;
+    width: 100%;
+
+    @include themify($themes) {
+      background-color: themed('col-background');
+      box-shadow: -3px -3px 5px themed('col-light'), 3px 3px 5px themed('col-dark');
+      color: themed('col-text');
+    }
 
     &:hover {
-      box-shadow: -1px -1px 3px $col-light, 1px 1px 3px $col-dark;
+      @include themify($themes) {
+        background-color: themed('col-background');
+        box-shadow: -1px -1px 3px themed('col-light'), 1px 1px 3px themed('col-dark');
+      }
     }
   }
 
@@ -148,9 +212,12 @@ button {
     top: 50%;
     transform: translateY(-50%);
 
-    border-top: 5px solid $col-text;
     border-right: 5px solid transparent;
     border-left: 5px solid transparent;
+
+    @include themify($themes) {
+      border-top: 5px solid themed('col-text');
+    }
   }
 }
 
@@ -177,27 +244,36 @@ input[type=range]::-ms-track {
   background: transparent; 
   border-color: transparent;
   color: transparent;
-  background-color: $col-background;
-  box-shadow: -3px -3px 5px $col-light inset, 3px 3px 5px $col-dark inset;
   border-radius: 5px;
+
+  @include themify($themes) {
+    background-color: themed('col-background');
+    box-shadow: -3px -3px 5px themed('col-light') inset, 3px 3px 5px themed('col-dark') inset;
+  }
 }
 
 input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 1rem;  
   cursor: pointer;
-  background-color: $col-background;
-  box-shadow: -3px -3px 5px $col-light inset, 3px 3px 5px $col-dark inset;
   border-radius: 5px;
+
+  @include themify($themes) {
+    background-color: themed('col-background');
+    box-shadow: -3px -3px 5px themed('col-light') inset, 3px 3px 5px themed('col-dark') inset;
+  }
 }
 
 input[type=range]::-moz-range-track {
   width: 100%;
   height: 1rem;
   cursor: pointer;
-  background-color: $col-background;
-  box-shadow: -3px -3px 5px $col-light inset, 3px 3px 5px $col-dark inset;
-  border-radius: 5px;;
+  border-radius: 5px;
+
+  @include themify($themes) {
+    background-color: themed('col-background');
+    box-shadow: -3px -3px 5px themed('col-light') inset, 3px 3px 5px themed('col-dark') inset;
+  }
 }
 
 input[type=range]::-ms-track {
@@ -206,58 +282,117 @@ input[type=range]::-ms-track {
   cursor: pointer;
   border-color: transparent;
   border-width: 0 0;
-  background-color: $col-background;
-  box-shadow: -3px -3px 5px $col-light inset, 3px 3px 5px $col-dark inset;
   border-radius: 5px;
+
+  @include themify($themes) {
+    background-color: themed('col-background');
+    box-shadow: -3px -3px 5px themed('col-light') inset, 3px 3px 5px themed('col-dark') inset;
+  }
 }
+
 input[type=range]::-ms-fill-lower {
-  background: $col-background;
-  border: 0px solid #010101;
+  border: 0;
   border-radius: 0;
+
+  @include themify($themes) {
+    background-color: themed('col-background');
+  }
 }
+
 input[type=range]:focus::-ms-fill-lower {
-  background: white;
+  @include themify($themes) {
+    background: themed('col-background');
+  }
 }
+
 input[type=range]::-ms-fill-upper {
-  background: $col-background;
-  border: 0px solid #010101;
+  border: 0;
   border-radius: 0px;
+
+  @include themify($themes) {
+    background-color: themed('col-background');
+  }
 }
+
 input[type=range]:focus::-ms-fill-upper {
-  background: white;
+  @include themify($themes) {
+    background: themed('col-background');
+  }
 }
 
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  border: none;
+  border: 0;
   width: 3rem;
   height: 1.5rem;
   border-radius: 1rem;
-  background: $col-text;
   cursor: pointer;
   margin-top: -3px; 
-  box-shadow: -3px -3px 5px $col-light, 3px 3px 5px $col-dark;
+
+  @include themify($themes) {
+    background: themed('col-text');
+    box-shadow: -3px -3px 5px themed('col-light'), 3px 3px 5px themed('col-dark');
+  }
 }
 
 input[type=range]::-moz-range-thumb {
-  border: 0px solid #000000;
+  border: 0;
   width: 3rem;
   height: 1.5rem;
   border-radius: 1rem;
-  background: $col-text;
   margin-top: -3px; 
-  box-shadow: -3px -3px 5px $col-light, 3px 3px 5px $col-dark;
+
+  @include themify($themes) {
+    background: themed('col-text');
+    box-shadow: -3px -3px 5px themed('col-light'), 3px 3px 5px themed('col-dark');
+  }
 }
 
 input[type=range]::-ms-thumb {
-  border: 0px solid #000000;
+  border: 0;
   width: 3rem;
   height: 1.5rem;
   border-radius: 1rem;
-  background: $col-text;
   margin-top: -3px; 
-  box-shadow: -3px -3px 5px $col-light, 3px 3px 5px $col-dark;
   cursor: pointer;
+
+  @include themify($themes) {
+    background: themed('col-text');
+    box-shadow: -3px -3px 5px themed('col-light'), 3px 3px 5px themed('col-dark');
+  }
 }
 
 /* End Range Slider */
+
+footer {
+  width: 100%;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+@media only screen and (min-width: 321px) {
+  .app-wrapper {
+    padding: 2rem;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+
+  .app-wrapper {
+    padding: 5rem 0;
+
+    @include themify($themes) {
+      background-color: themed('col-dark');
+    }
+  }
+
+  .app {
+    min-height: calc(100vh - 10rem);
+    max-width: 480px;
+    padding: 2rem;
+
+    @include themify($themes) {
+      background-color: themed('col-background');
+    }
+  }
+}
