@@ -257,7 +257,7 @@ export default class Metronome extends React.Component {
                 <option value="3">3/4</option>
                 <option value="4">4/4</option>
                 <option value="5">5/4</option>
-                <option value="5">6/4</option>
+                <option value="6">6/4</option>
                 <option value="7">7/4</option>
               </select>
             </div>
@@ -272,9 +272,9 @@ export default class Metronome extends React.Component {
                 <option value="2">2 clicks</option>
                 <option value="3">3 clicks</option>
                 <option value="4">4 clicks</option>
-                <option value="4">5 clicks</option>
-                <option value="4">6 clicks</option>
-                <option value="4">7 clicks</option>
+                <option value="5">5 clicks</option>
+                <option value="6">6 clicks</option>
+                <option value="7">7 clicks</option>
               </select>
             </div>
           </div>
