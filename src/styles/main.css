@@ -71,6 +71,7 @@ button {
   padding: .5rem;
   -webkit-transition: .2s;
   transition: .2s;
+  border-radius: 5px;
 }
 
 .theme-light button {
@@ -95,12 +96,6 @@ button.btn-circle {
   width: 3rem;
   height: 3rem;
   min-width: 3rem;
-  /* @include themify($themes) {
-      background-color: themed('col-background');
-      box-shadow: -3px -3px 5px themed('col-light'), 3px 3px 5px themed('col-dark');
-      color: themed('col-text');
-    }
- */
 }
 
 button.btn-circle.large {
@@ -218,7 +213,7 @@ button.btn-circle.large {
   -webkit-transition: .2s;
   transition: .2s;
   border: 0;
-  border-radius: .5rem;
+  border-radius: 5px;
   padding: 1rem;
   width: 100%;
 }

@@ -86,6 +86,7 @@ button {
   border: 0;
   padding: .5rem;
   transition: .2s;
+  border-radius: 5px;
 
   @include themify($themes) {
     background-color: themed('col-background');
@@ -101,12 +102,6 @@ button {
     height: 3rem;
     min-width: 3rem;
 
-    /* @include themify($themes) {
-      background-color: themed('col-background');
-      box-shadow: -3px -3px 5px themed('col-light'), 3px 3px 5px themed('col-dark');
-      color: themed('col-text');
-    }
- */
     &.large {
       height: 6rem;
       width: 6rem;
@@ -187,7 +182,7 @@ button {
     transition: .2s;
   
     border: 0;
-    border-radius: .5rem;
+    border-radius: 5px;
     padding: 1rem;
     width: 100%;
 

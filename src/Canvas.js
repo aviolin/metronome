@@ -1,3 +1,8 @@
+/**
+ * Contains the logic to render the visualizer
+ * animation and resize the canvas element.
+ */
+
 import React from 'react';
 
 export default class Canvas extends React.Component {
@@ -23,10 +28,8 @@ export default class Canvas extends React.Component {
 
   resetCanvas() {
     this.canvasRef.current.width = window.innerWidth;
-    //this.canvasRef.current.height = window.innerHeight;
     window.scrollTo(0,0); 
     this.drawCanvas();
-
   }
   
   drawCanvas() {
@@ -34,29 +37,25 @@ export default class Canvas extends React.Component {
     const ctx = canvas.getContext("2d");
 
     ctx.fillStyle = this.props.theme.background;
-    ctx.globalAlpha = 1;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     let circleRadius = Math.min(canvas.width / this.props.beatsPerBar / 5, 36);
 
     for (let i = 0; i < this.props.beatsPerBar; i++) {
-      ctx.fillStyle= this.props.theme.light;
-      ctx.globalAlpha = 1;
+      ctx.fillStyle = this.props.theme.light;
       ctx.shadowBlur = 0;
 
-      if (this.props.curNote) {
-        if (this.props.curNote.beat === i && this.props.curNote.click === 0) {
-          this.curNote = this.props.curNote;
-        }
+      if (this.props.curNote?.beat === i && this.props.curNote.click === 0) {
+        this.curNote = this.props.curNote;
       }
         
       if (this.curNote?.beat === i) {
         /* let percentage = this.props.percentage;
         1-percentage > .9 ? ctx.globalAlpha = 1-percentage*9 : ctx.globalAlpha = 0;*/
         if (this.props.isplaying) {
-          ctx.fillStyle="red";
-          ctx.shadowColor='red';
-          ctx.shadowBlur= circleRadius;
+          ctx.fillStyle = "red";
+          ctx.shadowColor = "red";
+          ctx.shadowBlur = circleRadius;
         } else {
           this.curNote = null;
         }
