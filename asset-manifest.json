@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/metronome/static/css/main.5de8f745.chunk.css",
-    "main.js": "/metronome/static/js/main.1dd6e13a.chunk.js",
-    "main.js.map": "/metronome/static/js/main.1dd6e13a.chunk.js.map",
+    "main.js": "/metronome/static/js/main.a520d2c8.chunk.js",
+    "main.js.map": "/metronome/static/js/main.a520d2c8.chunk.js.map",
     "runtime-main.js": "/metronome/static/js/runtime-main.69612852.js",
     "runtime-main.js.map": "/metronome/static/js/runtime-main.69612852.js.map",
     "static/css/2.679831fc.chunk.css": "/metronome/static/css/2.679831fc.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.679831fc.chunk.css",
     "static/js/2.99d2c0fd.chunk.js",
     "static/css/main.5de8f745.chunk.css",
-    "static/js/main.1dd6e13a.chunk.js"
+    "static/js/main.a520d2c8.chunk.js"
   ]
 }
