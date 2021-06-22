@@ -1,25 +1,25 @@
 {
   "files": {
     "main.css": "/metronome/static/css/main.ce5c8b7e.chunk.css",
-    "main.js": "/metronome/static/js/main.5ffa1761.chunk.js",
-    "main.js.map": "/metronome/static/js/main.5ffa1761.chunk.js.map",
+    "main.js": "/metronome/static/js/main.ba799bc1.chunk.js",
+    "main.js.map": "/metronome/static/js/main.ba799bc1.chunk.js.map",
     "runtime-main.js": "/metronome/static/js/runtime-main.69612852.js",
     "runtime-main.js.map": "/metronome/static/js/runtime-main.69612852.js.map",
     "static/css/2.679831fc.chunk.css": "/metronome/static/css/2.679831fc.chunk.css",
-    "static/js/2.99d2c0fd.chunk.js": "/metronome/static/js/2.99d2c0fd.chunk.js",
-    "static/js/2.99d2c0fd.chunk.js.map": "/metronome/static/js/2.99d2c0fd.chunk.js.map",
-    "5229467faaf4ec1feba7.worker.js": "/metronome/5229467faaf4ec1feba7.worker.js",
-    "5229467faaf4ec1feba7.worker.js.map": "/metronome/5229467faaf4ec1feba7.worker.js.map",
+    "static/js/2.c2a13e04.chunk.js": "/metronome/static/js/2.c2a13e04.chunk.js",
+    "static/js/2.c2a13e04.chunk.js.map": "/metronome/static/js/2.c2a13e04.chunk.js.map",
+    "7c5f42a9d79e132aa533.worker.js": "/metronome/7c5f42a9d79e132aa533.worker.js",
+    "7c5f42a9d79e132aa533.worker.js.map": "/metronome/7c5f42a9d79e132aa533.worker.js.map",
     "index.html": "/metronome/index.html",
     "static/css/2.679831fc.chunk.css.map": "/metronome/static/css/2.679831fc.chunk.css.map",
     "static/css/main.ce5c8b7e.chunk.css.map": "/metronome/static/css/main.ce5c8b7e.chunk.css.map",
-    "static/js/2.99d2c0fd.chunk.js.LICENSE.txt": "/metronome/static/js/2.99d2c0fd.chunk.js.LICENSE.txt"
+    "static/js/2.c2a13e04.chunk.js.LICENSE.txt": "/metronome/static/js/2.c2a13e04.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.69612852.js",
     "static/css/2.679831fc.chunk.css",
-    "static/js/2.99d2c0fd.chunk.js",
+    "static/js/2.c2a13e04.chunk.js",
     "static/css/main.ce5c8b7e.chunk.css",
-    "static/js/main.5ffa1761.chunk.js"
+    "static/js/main.ba799bc1.chunk.js"
   ]
 }
