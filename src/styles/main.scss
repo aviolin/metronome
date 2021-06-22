@@ -1,3 +1,10 @@
+/* Theming */
+
+/**
+* SASS theming technique from this article: 
+* https://medium.com/@dmitriy.borodiy/easy-color-theming-with-scss-bc38fd5734d1
+*/
+
 $themes: (
   light: (
     col-background: #f0f0f0,
@@ -17,7 +24,6 @@ $themes: (
   )
 );
 
-// SASS theming technique from this article: https://medium.com/@dmitriy.borodiy/easy-color-theming-with-scss-bc38fd5734d1
 @mixin themify($themes: $themes) {
   @each $theme, $map in $themes {
     .theme-#{$theme} & {
@@ -35,6 +41,8 @@ $themes: (
 @function themed($key) {
   @return map-get($theme-map, $key);
 }
+
+/* End Theming */
 
 * {
   box-sizing: border-box;
